@@ -700,7 +700,7 @@ subroutine readfileini_bin(w)
   integer:: ndimini,neqparini,neqparin,nwini,nwin ! values describing input data
   integer:: ix^L,idim,iw,ieqpar,snapshot
   double precision:: eqparextra
-  character(^LENNAME) :: varnamesini
+  character(79) :: varnamesini
   !-----------------------------------------------------------------------------
 
   oktest=index(teststr,'readfileini')>=1
@@ -723,7 +723,6 @@ subroutine readfileini_bin(w)
           "('it=',i7,' t=',g10.3,' ndim=',i3,' neqpar=',i3,' nw=',i3)")&
           it,t,ndimini,neqparini,nwini
      gencoord= ndimini<0
-     write(unitterm,*) 'paras', ios
      call checkNdimNeqparNw(ndimini,neqparini,nwini,neqparin,nwin)
      read(unitini,iostat=ios)nx
      if(oktest) write(unitterm,"('nx =',3i4)")nx
@@ -731,15 +730,13 @@ subroutine readfileini_bin(w)
      read(unitini,iostat=ios)(eqpar(ieqpar),ieqpar=1,neqparin),&
           (eqparextra,ieqpar=neqparin+1,neqparini)
      if(oktest) write(unitterm,*)eqpar
-     write(unitterm,*) 'eqpar', ios
-     read(unitini,iostat=ios)varnamesini
+     read(unitini)varnamesini
      if(varnames=='default')varnames=varnamesini
      if(oktest) write(unitterm,*)varnames
-     write(unitterm,*) 'varnames', ios
-     read(unitini,iostat=ios)(x(ix^S,idim),idim=1,ndim)
+     read(unitini)(x(ix^S,idim),idim=1,ndim)
      ! To conform savefileout_bin we use loop for iw
      do iw=1,nwin
-        read(unitini,iostat=ios)w(ix^S,iw)
+        read(unitini)w(ix^S,iw)
      end do
      if(ios/=0)then
         write(uniterr,*)'Error in ReadFileIni: iostat=',ios
