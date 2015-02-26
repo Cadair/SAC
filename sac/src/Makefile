@@ -4,7 +4,7 @@ ifndef F90
     F90=h5pfc
 endif
 ifndef F90FLG
-    F90FLG=-std=f2008
+    F90FLG=-free -mcmodel=medium -O3
 endif
 F90FLAGS= $(F90FLG)
 

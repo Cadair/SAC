@@ -3,11 +3,11 @@
 /
 
 &filelist
-	filenameini='/archive/gdf_testing/mhdmodes_np0202.ini'
+	filenameini='/fastdata/smq11sjm/gdf_testing/mhdmodes_np0202.ini'
 
 	typefileini='binary'
-	filename=   '/archive/gdf_testing/mhdmodes_np0202.log',
-     		    '/archive/gdf_testing/mhdmodes_np0202_'
+	filename=   '/fastdata/smq11sjm/gdf_testing/mhdmodes_np0202.log',
+     		    '/fastdata/smq11sjm/gdf_testing/mhdmodes2_np0202_'
 	typefileout='gdf'
         fullgridout= F
         fullgridini= T
